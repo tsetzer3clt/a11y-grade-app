@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Code Grader</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 Accessibility Code Grader</h1>
+      <p class="subtitle">Paste your HTML or JSX/TSX code to get an accessibility report and grade</p>
+    </header>
+
+    <main>
+      <div class="input-section">
+        <div class="file-type-selector">
+          <label>
+            <input type="radio" name="fileType" value="jsx" checked>
+            JSX/TSX
+          </label>
+          <label>
+            <input type="radio" name="fileType" value="html">
+            HTML
+          </label>
+        </div>
+
+        <textarea
+          id="codeInput"
+          placeholder="Paste your code here...&#10;&#10;Example:&#10;&lt;div&gt;&#10;  &lt;img src=&quot;photo.jpg&quot; /&gt;&#10;  &lt;button onClick={handleClick}&gt;Click me&lt;/button&gt;&#10;&lt;/div&gt;"
+          rows="15"
+        ></textarea>
+
+        <button id="analyzeBtn" class="analyze-btn">Analyze Code</button>
+      </div>
+
+      <div id="reportSection" class="report-section hidden">
+        <div class="grade-display">
+          <div class="grade-circle" id="gradeCircle">
+            <span id="gradeLetter">-</span>
+          </div>
+          <div class="grade-info">
+            <h2 id="gradeTitle">Grade: -</h2>
+            <p id="gradeScore">Score: -/100</p>
+            <p id="gradeSummary" class="summary-text"></p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-value" id="totalIssues">0</div>
+            <div class="stat-label">Total Issues</div>
+          </div>
+          <div class="stat-card error">
+            <div class="stat-value" id="errorCount">0</div>
+            <div class="stat-label">Errors</div>
+          </div>
+          <div class="stat-card warning">
+            <div class="stat-value" id="warningCount">0</div>
+            <div class="stat-label">Warnings</div>
+          </div>
+        </div>
+
+        <div class="report-content">
+          <div class="section" id="needsWorkSection">
+            <h3>❌ Needs Work</h3>
+            <ul id="needsWorkList" class="issue-list"></ul>
+          </div>
+
+          <div class="section" id="goodPracticesSection">
+            <h3>✅ Good Practices</h3>
+            <ul id="goodPracticesList" class="issue-list good"></ul>
+          </div>
+
+          <div class="section" id="issuesSection">
+            <h3>📋 Detailed Issues</h3>
+            <div id="issuesList" class="issues-detailed"></div>
+          </div>
+        </div>
+
+        <button id="resetBtn" class="reset-btn">Analyze New Code</button>
+      </div>
+
+      <div id="loadingSection" class="loading-section hidden">
+        <div class="spinner"></div>
+        <p>Analyzing your code...</p>
+      </div>
+
+      <div id="errorSection" class="error-section hidden">
+        <p id="errorMessage"></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
