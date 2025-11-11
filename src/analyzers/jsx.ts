@@ -1,4 +1,5 @@
 import parser from '@babel/parser';
+// @ts-ignore - traverse doesn't have types
 import _traverse from '@babel/traverse';
 const traverse = _traverse.default || _traverse;
 
@@ -64,8 +65,8 @@ function hasKeyboardHandler(attrs: any[]): boolean {
   );
 }
 
-function locationFromNode(node: any): { line: number; column: number } | null {
-  if (!node || !node.loc) return null;
+function locationFromNode(node: any): { line: number; column: number } | undefined {
+  if (!node || !node.loc) return undefined;
   return { line: node.loc.start.line, column: node.loc.start.column + 1 };
 }
 
@@ -203,12 +204,12 @@ export function analyzeJSX(code: string, filename?: string): Issue[] {
       },
     });
   } catch (err: any) {
-    issues.push({
-      ruleId: 'parse-error',
-      message: `Failed to parse as JSX/TSX: ${err.message?.split('\n')[0] || 'Unknown error'}`,
-      severity: 'error',
-      loc: null,
-    });
+      issues.push({
+        ruleId: 'parse-error',
+        message: `Failed to parse as JSX/TSX: ${err.message?.split('\n')[0] || 'Unknown error'}`,
+        severity: 'error',
+        loc: undefined,
+      });
   }
 
   return issues;
