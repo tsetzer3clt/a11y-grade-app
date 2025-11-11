@@ -58,7 +58,8 @@ header h1 {
 
 .file-type-selector {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
   margin-bottom: 20px;
 }
 

@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { analyzeJSX } from './analyzers/jsx.js';
 import { analyzeHtml } from './analyzers/html.js';
+import { analyzeJavaScript } from './analyzers/javascript.js';
+import { analyzePython } from './analyzers/python.js';
+import { analyzePHP } from './analyzers/php.js';
 import { generateReport } from './report.js';
 
 const app = express();
@@ -28,6 +31,12 @@ app.post('/api/audit', (req, res) => {
     let issues;
     if (fileType === 'html' || fileType === 'htm') {
       issues = analyzeHtml(code);
+    } else if (fileType === 'javascript' || fileType === 'js') {
+      issues = analyzeJavaScript(code);
+    } else if (fileType === 'python' || fileType === 'py') {
+      issues = analyzePython(code);
+    } else if (fileType === 'php') {
+      issues = analyzePHP(code);
     } else {
       // Default to JSX/TSX
       issues = analyzeJSX(code);

@@ -4,12 +4,13 @@ A web-based application that analyzes HTML and JSX/TSX code for accessibility is
 
 ## ✨ Features
 
-- **Code Analysis**: Supports both HTML and JSX/TSX code
+- **Code Analysis**: Supports HTML, JSX/TSX, JavaScript, Python, and PHP code
 - **Grading System**: Get a letter grade (A-F) and score (0-100) based on accessibility issues
 - **Detailed Reports**: See exactly what's wrong and what's right
 - **Issue Categorization**: Errors and warnings are clearly separated
 - **Web Interface**: Beautiful, responsive UI for easy code input
 - **REST API**: Backend API for programmatic access
+- **Multi-Language Support**: Analyzes HTML embedded in JavaScript and Python strings
 
 ## 🚀 Quick Start
 
@@ -44,21 +45,53 @@ A web-based application that analyzes HTML and JSX/TSX code for accessibility is
 ### Web Interface
 
 1. Open the app in your browser (http://localhost:3000)
-2. Select your code type (HTML or JSX/TSX)
+2. Select your code type (HTML, JSX/TSX, JavaScript, Python, or PHP)
 3. Paste your code into the textarea
 4. Click "Analyze Code"
 5. Review your grade and detailed report
+
+**Supported Languages:**
+- **HTML**: Direct HTML markup
+- **JSX/TSX**: React/TypeScript JSX code
+- **JavaScript**: JavaScript files with HTML in template literals or strings
+- **Python**: Python files with HTML in string literals (triple-quoted, f-strings, etc.)
+- **PHP**: PHP files with HTML in strings, heredoc, or mixed PHP/HTML templates
 
 ### API Usage
 
 You can also use the API programmatically:
 
 ```bash
+# HTML
 curl -X POST http://localhost:3000/api/audit \
   -H "Content-Type: application/json" \
   -d '{
     "code": "<img src=\"photo.jpg\" />",
     "fileType": "html"
+  }'
+
+# JavaScript
+curl -X POST http://localhost:3000/api/audit \
+  -H "Content-Type: application/json" \
+  -d '{
+    "code": "const html = `<div><img src=\"photo.jpg\" /></div>`;",
+    "fileType": "javascript"
+  }'
+
+# Python
+curl -X POST http://localhost:3000/api/audit \
+  -H "Content-Type: application/json" \
+  -d '{
+    "code": "html = \"\"\"<div><img src=\\\"photo.jpg\\\" /></div>\"\"\"",
+    "fileType": "python"
+  }'
+
+# PHP
+curl -X POST http://localhost:3000/api/audit \
+  -H "Content-Type: application/json" \
+  -d '{
+    "code": "<?php echo \"<div><img src=\\\"photo.jpg\\\" /></div>\"; ?>",
+    "fileType": "php"
   }'
 ```
 

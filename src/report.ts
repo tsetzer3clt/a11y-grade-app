@@ -41,6 +41,10 @@ const RULE_DESCRIPTIONS: Record<string, { name: string; fix: string }> = {
     name: 'Tab Index',
     fix: 'Avoid positive tabIndex values. Use tabIndex="0" for focusable elements or tabIndex="-1" to remove from tab order.',
   },
+  'no-html-found': {
+    name: 'No HTML Content',
+    fix: 'No HTML/JSX content was found in the code. Make sure your code contains HTML strings or JSX syntax.',
+  },
 };
 
 export function generateReport(issues: Issue[]): Report {

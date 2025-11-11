@@ -10,7 +10,7 @@
   <div class="container">
     <header>
       <h1>🔍 Accessibility Code Grader</h1>
-      <p class="subtitle">Paste your HTML or JSX/TSX code to get an accessibility report and grade</p>
+      <p class="subtitle">Paste your code (HTML, JSX, JavaScript, Python, or PHP) to get an accessibility report and grade</p>
     </header>
 
     <main>
@@ -24,11 +24,23 @@
             <input type="radio" name="fileType" value="html">
             HTML
           </label>
+          <label>
+            <input type="radio" name="fileType" value="javascript">
+            JavaScript
+          </label>
+          <label>
+            <input type="radio" name="fileType" value="python">
+            Python
+          </label>
+          <label>
+            <input type="radio" name="fileType" value="php">
+            PHP
+          </label>
         </div>
 
         <textarea
           id="codeInput"
-          placeholder="Paste your code here...&#10;&#10;Example:&#10;&lt;div&gt;&#10;  &lt;img src=&quot;photo.jpg&quot; /&gt;&#10;  &lt;button onClick={handleClick}&gt;Click me&lt;/button&gt;&#10;&lt;/div&gt;"
+          placeholder="Paste your code here...&#10;&#10;Examples:&#10;JSX: &lt;div&gt;&lt;img src=&quot;photo.jpg&quot; /&gt;&lt;/div&gt;&#10;HTML: &lt;button&gt;Click&lt;/button&gt;&#10;JS: const html = `&lt;div&gt;...&lt;/div&gt;`;&#10;Python: html = &quot;&quot;&quot;&lt;div&gt;...&lt;/div&gt;&quot;&quot;&quot;&#10;PHP: echo &quot;&lt;div&gt;...&lt;/div&gt;&quot;;"
           rows="15"
         ></textarea>
 
